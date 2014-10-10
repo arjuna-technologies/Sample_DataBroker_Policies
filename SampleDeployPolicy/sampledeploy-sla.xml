@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--                                                                                                     -->
+<!-- Copyright (c) 2014, Arjuna Technologies Limited, Newcastle-upon-Tyne, England. All rights reserved. -->
+<!--                                                                                                     -->
+
+<serviceAgreement name="SampleDeploy" xmlns="urn:arjuna:agility-portal:service-agreement-template:1.4">
+    <features>
+        <feature name="agility.sampledeploy.flowname"      type="simple:string" shared="true"/>
+        <feature name="agility.sampledeploy.sourcename"    type="simple:string" shared="true"/>
+        <feature name="agility.sampledeploy.processorname" type="simple:string" shared="true"/>
+        <feature name="agility.sampledeploy.servicename"   type="simple:string" shared="true"/>
+    </features>
+</serviceAgreement>
