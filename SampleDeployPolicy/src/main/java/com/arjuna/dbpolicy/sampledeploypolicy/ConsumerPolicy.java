@@ -138,14 +138,14 @@ public class ConsumerPolicy implements ServiceAgreementListener
             {
                 DataSource    dataSource    = dataFlowNodeFactory.createDataFlowNode(sourceName, DataSource.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
                 DataProcessor dataProcessor = dataFlowNodeFactory.createDataFlowNode(processorName, DataProcessor.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
-                DataSink      dataSink      = dataFlowNodeFactory.createDataFlowNode(sourceName, DataSink.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
+                DataService   dataService   = dataFlowNodeFactory.createDataFlowNode(serviceName, DataService.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
 
                 DataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataSource, dataFlow);
                 DataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataProcessor, dataFlow);
-                DataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataSink, dataFlow);
+                DataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataService, dataFlow);
 
                 ((ObservableDataProvider<String>) dataSource.getDataProvider(String.class)).addDataConsumer((ObserverDataConsumer<String>) dataProcessor.getDataConsumer(String.class));
-                ((ObservableDataProvider<String>) dataProcessor.getDataProvider(String.class)).addDataConsumer((ObserverDataConsumer<String>) dataSink.getDataConsumer(String.class));
+                ((ObservableDataProvider<String>) dataProcessor.getDataProvider(String.class)).addDataConsumer((ObserverDataConsumer<String>) dataService.getDataConsumer(String.class));
             }
             else
                 logger.log(Level.WARNING, "Unable to find DataFlowNode Factory 'Sample Data Source Factory'");
