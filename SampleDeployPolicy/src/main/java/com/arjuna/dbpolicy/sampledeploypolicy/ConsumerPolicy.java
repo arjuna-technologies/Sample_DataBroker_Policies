@@ -23,7 +23,7 @@ import com.arjuna.databroker.data.DataFlowInventory;
 import com.arjuna.databroker.data.DataFlowNodeFactory;
 import com.arjuna.databroker.data.DataFlowNodeFactoryInventory;
 import com.arjuna.databroker.data.DataProcessor;
-import com.arjuna.databroker.data.DataSink;
+import com.arjuna.databroker.data.DataService;
 import com.arjuna.databroker.data.DataSource;
 import com.arjuna.databroker.data.connector.ObservableDataProvider;
 import com.arjuna.databroker.data.connector.ObserverDataConsumer;
