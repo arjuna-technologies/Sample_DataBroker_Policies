@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, Arjuna Technologies Limited, Newcastle-upon-Tyne, England. All rights reserved. 
+ * Copyright (c) 2014-2015, Arjuna Technologies Limited, Newcastle-upon-Tyne, England. All rights reserved. 
  */
 
 package com.arjuna.dbpolicy.sampledeploypolicy;
@@ -27,7 +27,6 @@ import com.arjuna.databroker.data.DataService;
 import com.arjuna.databroker.data.DataSource;
 import com.arjuna.databroker.data.connector.ObservableDataProvider;
 import com.arjuna.databroker.data.connector.ObserverDataConsumer;
-import com.arjuna.databroker.data.jee.DataFlowNodeLifeCycleControl;
 import com.arjuna.dbpolicy.sampledeploypolicy.view.SampleDeployView;
 
 @Stateless
@@ -140,9 +139,9 @@ public class ConsumerPolicy implements ServiceAgreementListener
                 DataProcessor dataProcessor = dataFlowNodeFactory.createDataFlowNode(processorName, DataProcessor.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
                 DataService   dataService   = dataFlowNodeFactory.createDataFlowNode(serviceName, DataService.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
 
-                DataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataSource, dataFlow);
-                DataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataProcessor, dataFlow);
-                DataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataService, dataFlow);
+                _dataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataSource, dataFlow);
+                _dataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataProcessor, dataFlow);
+                _dataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataService, dataFlow);
 
                 ((ObservableDataProvider<String>) dataSource.getDataProvider(String.class)).addDataConsumer((ObserverDataConsumer<String>) dataProcessor.getDataConsumer(String.class));
                 ((ObservableDataProvider<String>) dataProcessor.getDataProvider(String.class)).addDataConsumer((ObserverDataConsumer<String>) dataService.getDataConsumer(String.class));
@@ -156,10 +155,12 @@ public class ConsumerPolicy implements ServiceAgreementListener
         }
     }
 
-    @EJB(lookup="java:global/databroker/control-core/DataFlowFactory")
+    @EJB(lookup="java:global/databroker/data-core-jee/DataFlowFactory")
     private DataFlowFactory _dataFlowFactory;
-    @EJB(lookup="java:global/databroker/control-core/DataFlowInventory")
+    @EJB(lookup="java:global/databroker/data-core-jee/DataFlowInventory")
     private DataFlowInventory _dataFlowInventory;
-    @EJB(lookup="java:global/databroker/control-core/DataFlowNodeFactoryInventory")
+    @EJB(lookup="java:global/databroker/data-core-jee/DataFlowNodeFactoryInventory")
     private DataFlowNodeFactoryInventory _dataFlowNodeFactoryInventory;
+    @EJB(lookup="java:global/databroker/data-core-jee/DataFlowNodeLifeCycleControl")
+    private DataFlowNodeLifeCycleControl _dataFlowNodeLifeCycleControl;
 }
