@@ -69,7 +69,7 @@
         </dependency>
         <dependency>
             <groupId>com.arjuna.databroker</groupId>
-            <artifactId>data-core-jee</artifactId>
+            <artifactId>data-core</artifactId>
             <version>${version.com.arjuna.databroker}</version>
             <scope>provided</scope>
         </dependency>

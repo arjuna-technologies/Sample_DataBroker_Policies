@@ -7,10 +7,13 @@ package com.arjuna.dbpolicy.sampledeploypolicy;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
 import com.arjuna.agility.ServiceAgreement;
 import com.arjuna.agility.ServiceAgreementContext;
 import com.arjuna.agility.ServiceAgreementListener;
@@ -27,6 +30,7 @@ import com.arjuna.databroker.data.DataService;
 import com.arjuna.databroker.data.DataSource;
 import com.arjuna.databroker.data.connector.ObservableDataProvider;
 import com.arjuna.databroker.data.connector.ObserverDataConsumer;
+import com.arjuna.databroker.data.core.DataFlowNodeLifeCycleControl;
 import com.arjuna.dbpolicy.sampledeploypolicy.view.SampleDeployView;
 
 @Stateless
@@ -139,9 +143,9 @@ public class ConsumerPolicy implements ServiceAgreementListener
                 DataProcessor dataProcessor = dataFlowNodeFactory.createDataFlowNode(processorName, DataProcessor.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
                 DataService   dataService   = dataFlowNodeFactory.createDataFlowNode(serviceName, DataService.class, Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap());
 
-                _dataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataSource, dataFlow);
-                _dataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataProcessor, dataFlow);
-                _dataFlowNodeLifeCycleControl.processCreatedDataFlowNode(dataService, dataFlow);
+                _dataFlowNodeLifeCycleControl.completeCreationAndActivateDataFlowNode(UUID.randomUUID().toString(), dataSource, dataFlow);
+                _dataFlowNodeLifeCycleControl.completeCreationAndActivateDataFlowNode(UUID.randomUUID().toString(), dataProcessor, dataFlow);
+                _dataFlowNodeLifeCycleControl.completeCreationAndActivateDataFlowNode(UUID.randomUUID().toString(), dataService, dataFlow);
 
                 ((ObservableDataProvider<String>) dataSource.getDataProvider(String.class)).addDataConsumer((ObserverDataConsumer<String>) dataProcessor.getDataConsumer(String.class));
                 ((ObservableDataProvider<String>) dataProcessor.getDataProvider(String.class)).addDataConsumer((ObserverDataConsumer<String>) dataService.getDataConsumer(String.class));
