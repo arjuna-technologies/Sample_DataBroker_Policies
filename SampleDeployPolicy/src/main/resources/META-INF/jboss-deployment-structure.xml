@@ -5,13 +5,13 @@
 <!--                                                                                                          -->
 
 <jboss-deployment-structure>
-	<deployment>
-		<dependencies>
-			<module name="org.slf4j" />
-			<module name="deployment.agility-server.ear" />
+    <deployment>
+        <dependencies>
+            <module name="org.slf4j" />
+            <module name="deployment.agility-server.ear" />
             <module name="deployment.databroker.ear.data-common.jar"/>
             <module name="deployment.databroker.ear.data-common-jee.jar"/>
-            <module name="deployment.databroker.ear.control-core.jar"/>
-		</dependencies>
-	</deployment>
+            <module name="deployment.databroker.ear.data-core-jee.jar"/>
+        </dependencies>
+    </deployment>
 </jboss-deployment-structure>
