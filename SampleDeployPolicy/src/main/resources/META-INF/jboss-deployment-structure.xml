@@ -11,6 +11,7 @@
             <module name="deployment.agility-server.ear" />
             <module name="deployment.databroker.ear.data-common.jar"/>
             <module name="deployment.databroker.ear.data-common-jee.jar"/>
+            <module name="deployment.databroker.ear.data-core.jar"/>
             <module name="deployment.databroker.ear.data-core-jee.jar"/>
         </dependencies>
     </deployment>
