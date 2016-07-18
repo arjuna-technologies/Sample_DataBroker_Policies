@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, Arjuna Technologies Limited, Newcastle-upon-Tyne, England. All rights reserved. 
+ * Copyright (c) 2014-2015, Arjuna Technologies Limited, Newcastle-upon-Tyne, England. All rights reserved.
  */
 
 package com.arjuna.dbpolicy.sampledeploypolicy;
@@ -75,7 +75,7 @@ public class ConsumerPolicy implements ServiceAgreementListener
             System.err.println("onChanged: SourceName:    " + sampleDeployView.getSourceName());
             System.err.println("onChanged: ProcessorName: " + sampleDeployView.getProcessorName());
             System.err.println("onChanged: ServiceName:   " + sampleDeployView.getServiceName());
-            
+
             createDataFlow(sampleDeployView.getFlowName(), sampleDeployView.getSourceName(), sampleDeployView.getProcessorName(), sampleDeployView.getServiceName());
         }
     }
